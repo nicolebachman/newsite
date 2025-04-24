@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JODI-esque Construction Site</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            font-family: serif;
+        }
+
+        .image-stack {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: visible;
+        }
+
+        .image-stack img {
+            position: absolute;
+            top: 20%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+        }
+
+        .link-style {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .investment-page {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start; /* Changed from center to flex-start */
+            min-height: 100vh;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 20px;
+            padding-top: 20px; /* Added padding to the top */
+        }
+
+        .investment-page ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 1em;
+        }
+
+        .investment-page li {
+            margin-bottom: 0.5em;
+        }
+
+        .investment-page a {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>!!!UNDER CONSTRUCTION!!!</h1>
+        <section>
+            <p>UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER</p>
+        </section>
+    </header>
+
+    <main>
+        <section id="main-content">
+            <p>UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER</p>
+            <div class="image-stack">
+            </div>
+            <p><a href="#investment" class="link-style">or click me</a></p>
+        </section>
+
+        <section id="investment" class="investment-page">
+            <p>Wow, you're really invested!</p>
+            <ul>
+                <li>Email: <a href="mailto:nicolebachman12@gmail.com">nicolebachman12@gmail.com</a></li>
+                <li>Instagram: nicoleb_creative</li>
+            </ul>
+            <a href="#" class="link-style">Back to main page</a>
+        </section>
+
+        <section>
+            <p>UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER</p>
+            <p><a href="#investment" class="link-style">another link</a></p>
+        </section>
+
+        <section>
+            <img id="random-gif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdudzc0eHc4empzMmdrOHc0b2lhZ2ZjZ2tzdHpwdXlsMnVqd2U4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2ij1QxLNTl7hFQzj8M/giphy.gif" alt="Random Construction Image">
+        </section>
+
+        <section>
+            <p>UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER UNDER CONSTRUCTION CHECK BACK LATER</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nicole Bachman. All rights reserved. Site under constant construction.</p>
+    </footer>
+
+    <script>
+        // Array of image URLs
+        const imageArray = [
+            "https://via.placeholder.com/150/FF0000",
+            "https://via.placeholder.com/150/00FF00",
+            "https://via.placeholder.com/150/0000FF",
+            "https://via.placeholder.com/150/FFFF00",
+            "https://via.placeholder.com/150/FF00FF",
+            "https://via.placeholder.com/150/00FFFF",
+            "https://via.placeholder.com/150/808080",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdudzc0eHc4empzMmdrOHc0b2lhZ2ZjZ2tzdHpwdXlsMnVqd2U4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2ij1QxLNTl7hFQzj8M/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXczMDk2NnNpazA2czJ4ZmF2ZGhwaGlucmxsNHQwNjJkOGNzeXZsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DbRuWMyUrEZgY/giphy.gif"
+        ];
+
+        const imageStack = document.querySelector('.image-stack');
+        let imageIndex = 0;
+
+        function addImageWithDelay() {
+            const img = document.createElement('img');
+            img.src = imageArray[imageIndex];
+            img.style.left = `${Math.random() * 100}vw`;
+            img.style.top = `${Math.random() * 100}vh`;
+            img.style.transform = `translate(-50%, -50%)`;
+            img.style.opacity = 1;
+            imageStack.appendChild(img);
+
+            setTimeout(() => {
+                img.remove();
+            }, 2000);
+
+            imageIndex = (imageIndex + 1) % imageArray.length;
+            setTimeout(addImageWithDelay, 100);
+        }
+
+        addImageWithDelay();
+
+        const investmentLinks = document.querySelectorAll('a[href="#investment"]');
+        investmentLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('investment').style.display = 'flex';
+                document.getElementById('main-content').style.display = 'none';
+                window.scrollTo(0, 0);
+            });
+        });
+
+        document.querySelector('a[href="#"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('investment').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
